@@ -1,10 +1,14 @@
-import './App.css';
+/** @jsxImportSource theme-ui */
+import { ThemeProvider } from 'theme-ui'
+import TodosList from './Components/TodosList'
+import theme from './theme'
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <ThemeProvider theme={theme}>
+      <TodosList />
+    </ThemeProvider>
+      
   );
 }
 
