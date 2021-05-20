@@ -1,17 +1,19 @@
-/** @jsxImportSource theme-ui */
+import React from 'react';
 import { Container, Flex } from "@theme-ui/components"
 import Todos from "./Todos"
 
 
-const TodosList = () => {
+const TodosList = ({todosList}) => {
+
 
     return(
         <Container>
             <Flex sx={{flexWrap: 'wrap', justifyContent: 'center'}}>
-                <Todos></Todos>
-                <Todos></Todos>
-                <Todos></Todos>
-                <Todos></Todos>
+                {todosList.map(todos => {
+                    return(
+                        <Todos key={todos.id} content={todos.title}/>
+                    )
+                })}
             </Flex>
         </Container>
         

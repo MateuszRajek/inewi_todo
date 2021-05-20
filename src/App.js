@@ -1,12 +1,12 @@
 /** @jsxImportSource theme-ui */
 import { ThemeProvider } from 'theme-ui'
-import TodosList from './Components/TodosList'
+import MainView from './Components/MainView';
 import theme from './theme'
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <TodosList />
+      <MainView />
     </ThemeProvider>
       
   );
