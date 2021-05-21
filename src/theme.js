@@ -12,7 +12,7 @@ const theme = {
     ],
     fonts: {
       body: 'Open Sans, sans-serif',
-      heading: 'Poppins\', sans-serif;',
+      heading: 'Poppins, sans-serif',
       monospace: 'Menlo, monospace'
     },
     fontSizes: [
@@ -138,17 +138,21 @@ const theme = {
     cards: {
         primary: {
           display: 'flex',
-          flexDirection: 'column',
           alignItems: 'center',
+          flexDirection: 'column',
           justifyContent: 'space-between',
-          width: '200px',
-          height: '250px',
+          width: '80%',
           padding: 2,
           margin: 2,
           borderRadius: 4,
           boxShadow: '0 0 8px rgba(0, 0, 0, 0.125)',
         },
       },
+    buttons: {
+      primary: {
+        margin: '5px'
+      }
+    }
   }
 
   export default theme
