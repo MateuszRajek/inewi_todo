@@ -10,10 +10,7 @@ const TodosList = ({todosList, editTodos, deleteTodos}) => {
             <Flex sx={{flexWrap: 'wrap', justifyContent: 'center'}}>
                 {todosList.map(todos => {
                     return(
-                        <>
                             <Todos key={todos.id} item={todos} editTodos={editTodos} deleteTodos={deleteTodos} />
-                        </>
-                        
                     )
                 })}
             </Flex>

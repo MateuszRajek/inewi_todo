@@ -22,7 +22,6 @@ export const postTodo = async (body) => {
 }
 
 export const editTodos = async (body, id) => {
-    console.log(body, id)
     await fetch(`https://gorest.co.in/public-api/todos/${id}`, {
         method: 'PUT',
         headers: {

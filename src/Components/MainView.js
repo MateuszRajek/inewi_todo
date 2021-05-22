@@ -20,6 +20,7 @@ const MainView = () => {
         }
         const todos = await postTodo(body)
         updateTodosList(todos.data)
+        updateInputValue('')
     }
 
     const editTodos = async (body, id) => {
@@ -47,7 +48,7 @@ const MainView = () => {
 
     return (
         <>
-          <AddTodos onSubmit={onSubmit} onChange={onInputChange} />
+          <AddTodos onSubmit={onSubmit} onChange={onInputChange} value={inputValue}/>
           <TodosList todosList={todosList} editTodos={editTodos} deleteTodos={deleteTodos} />
         </>
     )

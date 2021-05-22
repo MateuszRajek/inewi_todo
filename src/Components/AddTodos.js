@@ -1,13 +1,13 @@
 import React from 'react';
 import { Label,Input, Box, Button } from 'theme-ui'
 
-const AddTodos = ({onSubmit, onChange}) => {
+const AddTodos = ({onSubmit, onChange, value}) => {
 
 
     return (
         <Box as='form' onSubmit={onSubmit}>
             <Label>Add todos</Label>
-            <Input placeholder={'Type what to do'} onChange={onChange}></Input>
+            <Input value={value} placeholder={'Type what to do'} onChange={onChange}></Input>
             <Button type='submit'>Submit</Button>
         </Box>
     )
