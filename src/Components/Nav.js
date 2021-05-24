@@ -22,9 +22,6 @@ const Nav = ({ showCompleted, showALl, setSearchInputValue }) => {
             </Button>
           </Link>
           <Input sx={{maxWidth: '50%'}} placeholder={'Search'} onChange={onInputChange} ></Input>
-          <Button sx={{backgroundColor: '#4682b4', ':hover': {backgroundColor: 'white', color: '#4682b4', boxShadow: '0 0 3px #4682b4'}}}
-            type='submit'>Search
-          </Button>
       </Flex>
     )
 }
