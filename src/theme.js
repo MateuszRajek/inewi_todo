@@ -27,7 +27,7 @@ const theme = {
       96
     ],
     sizes: {
-      container: '90%'
+      container: '100%'
     },
     layout: {
       container: {
@@ -54,7 +54,7 @@ const theme = {
       root: {
         fontFamily: 'body',
         lineHeight: 'body',
-        fontWeight: 'body'
+        fontWeight: 'body',
       },
       h1: {
         color: 'text',
@@ -133,6 +133,9 @@ const theme = {
       },
       img: {
         maxWidth: '100%'
+      },
+      progress: {
+        color: '#e89e9e',
       }
     },
     cards: {
@@ -141,7 +144,7 @@ const theme = {
           alignItems: 'center',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          width: '80%',
+          width: '100%',
           padding: 2,
           margin: 2,
           borderRadius: 4,
@@ -150,9 +153,18 @@ const theme = {
       },
     buttons: {
       primary: {
-        margin: '5px'
+        margin: '5px',
+        cursor: 'pointer',
       }
-    }
+    },
+    forms: {
+      input: {
+        textTransform: 'upperCase',
+        boxShadow: '0 0 8px rgb(0 0 0 / 13%)',
+        border: 'none'
+      }
+    },
+    
   }
 
   export default theme

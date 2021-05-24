@@ -7,8 +7,8 @@ import theme from './theme'
 
 function App() {
   return (
+    <ThemeProvider theme={theme}>
       <Router>
-        <ThemeProvider theme={theme}>
         <Switch>
           <Route exact path='/'>
             <MainView />
@@ -17,8 +17,8 @@ function App() {
              <StatsView />
           </Route>
         </Switch>
-        </ThemeProvider>  
       </Router> 
+    </ThemeProvider>  
   );
 }
 

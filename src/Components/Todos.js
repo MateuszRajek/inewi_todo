@@ -55,13 +55,15 @@ const Todos = ({ item, editTodos, deleteTodos }) => {
             <Flex sx={{justifyContent: 'space-between', width: '100%', flexWrap: 'wrap'}}>
                 <Input onChange={editItemText} defaultValue={item.title} />
                 <Label sx={{width: 'auto'}}>
-                    <Checkbox type='checkbox' checked={item.completed} onChange={() => toggleCompleted()}/>
+                    <Checkbox sx={{cursor: 'pointer'}} type='checkbox' checked={item.completed} onChange={() => toggleCompleted()}/>
                     Completed
                 </Label>
             </Flex>
             <Flex sx={{justifyContent: 'space-between', flexWrap: 'wrap'}}>
-                <Button sx={{backgroundColor: '#5bc7a3'}}onClick={() => updateText()}>Save Changes</Button>
-                <Button sx={{backgroundColor: '#cf3b21'}}onClick={() => deleteItem(item.id)}>Delete</Button>
+                <Button sx={{backgroundColor: '#5bc7a3', ':hover': {backgroundColor: 'white', color: '#5bc7a3', boxShadow: '0 0 3px #5bc7a3'}}}
+                 onClick={() => updateText()}>Save Changes</Button>
+                <Button sx={{backgroundColor: '#cf3b21', ':hover': {backgroundColor: 'white', color: '#cf3b21', boxShadow: '0 0 3px #cf3b21'}}}
+                 onClick={() => deleteItem(item.id)}>Delete</Button>
             </Flex> 
         </Card>
     )

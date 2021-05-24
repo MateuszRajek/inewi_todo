@@ -5,6 +5,7 @@ import TodosList from './TodosList';
 import { todosListState } from './atoms'
 import { useRecoilState } from 'recoil';
 import Nav from './Nav';
+import { Container } from '@theme-ui/components';
 
 const MainView = () => {
     const [todosList, updateTodosList] = useRecoilState(todosListState)
@@ -66,9 +67,13 @@ const MainView = () => {
 
     return (
         <>
-          <Nav showCompleted={showCompleted} showALl={showALl} setSearchInputValue={setSearchInputValue} />
-          <AddTodos onSubmit={onSubmit} onChange={onInputChange} value={inputValue} />
-          <TodosList todosList={todosList} editTodos={editTodos} deleteTodos={deleteTodos} completed={completed} todosCompletedList={todosCompletedList} searchText={searchInputValue} />
+        <Container sx={{width: '90%', padding: '0 10px'}}>
+            <Nav sx={{margin: '10px 0'}}showCompleted={showCompleted} showALl={showALl} setSearchInputValue={setSearchInputValue} />
+            <AddTodos onSubmit={onSubmit} onChange={onInputChange} value={inputValue} />
+            <TodosList todosList={todosList} editTodos={editTodos} deleteTodos={deleteTodos} 
+            completed={completed} todosCompletedList={todosCompletedList} searchText={searchInputValue} />
+        </Container>
+         
         </>
     )
 }

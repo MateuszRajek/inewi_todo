@@ -9,12 +9,22 @@ const Nav = ({ showCompleted, showALl, setSearchInputValue }) => {
     }
 
     return (
-        <Flex sx={{flexWrap: 'wrap'}}as="nav">
-          <Button sx={{backgroundColor: '#a8a8a8'}} onClick={showALl}>Main</Button>
-          <Button sx={{backgroundColor: '#a8a8a8'}} onClick={showCompleted}>Completed</Button>
-          <Link to='/stats'><Button sx={{backgroundColor: '#a8a8a8'}} p={2}>Statistics</Button></Link>
+        <Flex sx={{flexWrap: 'wrap', justifyContent: 'center'}}as="nav">
+          <Button sx={{backgroundColor: '#a8a8a8', ':hover': {backgroundColor: 'white', color: '#a8a8a8', boxShadow: '0 0 3px #a8a8a8'}}} 
+           onClick={showALl}>Main
+          </Button>
+          <Button sx={{backgroundColor: '#a8a8a8', ':hover': {backgroundColor: 'white', color: '#a8a8a8',boxShadow: '0 0 3px #a8a8a8'}}}
+           onClick={showCompleted}>Completed
+          </Button>
+          <Link to='/stats'>
+            <Button sx={{backgroundColor: '#a8a8a8',':hover': {backgroundColor: 'white', color: '#a8a8a8', 
+             boxShadow: '0 0 3px #a8a8a8'}}}>Statistics
+            </Button>
+          </Link>
           <Input sx={{maxWidth: '50%'}} placeholder={'Search'} onChange={onInputChange} ></Input>
-          <Button sx={{backgroundColor: '#4682b4'}}type='submit'>Submit</Button>
+          <Button sx={{backgroundColor: '#4682b4', ':hover': {backgroundColor: 'white', color: '#4682b4', boxShadow: '0 0 3px #4682b4'}}}
+            type='submit'>Search
+          </Button>
       </Flex>
     )
 }
