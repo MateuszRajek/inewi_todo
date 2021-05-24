@@ -1,34 +1,34 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { Button, Card, Checkbox, Flex, Input, Label } from 'theme-ui'
-import { todoListState } from './atoms';
+import { todosListState } from './atoms';
 
 const Todos = ({ item, editTodos, deleteTodos }) => {
-    const [todoList, setTodoList] = useRecoilState(todoListState);
-    const index = todoList.findIndex((listItem) => listItem === item);
+    const [todosList, updatetodosList] = useRecoilState(todosListState);
+    const index = todosList.findIndex((listItem) => listItem === item);
 
     const editItemText = ({target: {value}}) => {
-        const newList = replaceItemAtIndex(todoList, index, {
+        const newList = replaceItemAtIndex(todosList, index, {
         ...item,
         title: value,
         });
-        setTodoList(newList);
+        updatetodosList(newList);
     }
 
     const updateText = () => {
         const body = {
-            title: todoList[index].title,
-            completed: todoList[index].completed
+            title: todosList[index].title,
+            completed: todosList[index].completed
         }
         editTodos(body, item.id)
     }
 
     const toggleCompleted = () => {
-        const newList = replaceItemAtIndex(todoList, index, {
+        const newList = replaceItemAtIndex(todosList, index, {
           ...item,
           completed: !item.completed,
         });
-        setTodoList(newList);
+        updatetodosList(newList);
         const body = {
             title: newList[index].title,
             completed: newList[index].completed
@@ -37,8 +37,8 @@ const Todos = ({ item, editTodos, deleteTodos }) => {
     }
 
     const deleteItem = (id) => {
-        const newList = removeItemAtIndex(todoList, index);
-        setTodoList(newList);
+        const newList = removeItemAtIndex(todosList, index);
+        updatetodosList(newList);
         deleteTodos(id)
       };
 
@@ -60,8 +60,8 @@ const Todos = ({ item, editTodos, deleteTodos }) => {
                 </Label>
             </Flex>
             <Flex sx={{justifyContent: 'space-between', flexWrap: 'wrap'}}>
-                <Button onClick={() => updateText()}>Save Changes</Button>
-                <Button onClick={() => deleteItem(item.id)}>Delete</Button>
+                <Button sx={{backgroundColor: '#5bc7a3'}}onClick={() => updateText()}>Save Changes</Button>
+                <Button sx={{backgroundColor: '#cf3b21'}}onClick={() => deleteItem(item.id)}>Delete</Button>
             </Flex> 
         </Card>
     )

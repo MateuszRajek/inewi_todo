@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { postTodo, getTodos, editTodos as edit, deleteTodos as remove } from '../APIService';
 import AddTodos from './AddTodos';
 import TodosList from './TodosList';
-import { todoListState } from './atoms'
+import { todosListState } from './atoms'
 import { useRecoilState } from 'recoil';
+import Nav from './Nav';
 
 const MainView = () => {
-    const [todosList, updateTodosList] = useRecoilState(todoListState)
+    const [todosList, updateTodosList] = useRecoilState(todosListState)
     const [inputValue, updateInputValue] = useState('')
+    const [searchInputValue, setSearchInputValue] = useState('')
+    const [completed, setCompleted] = useState(false)
+    const todosCompletedList = todosList.filter((item) => item.completed);
 
     const onInputChange = event => {
         updateInputValue(event.target.value)
@@ -38,18 +42,33 @@ const MainView = () => {
         addTodos()
     }
 
+    const showCompleted = () => {
+        setCompleted(true)
+    }
+
+    const showALl = () => {
+        setCompleted(false)
+    }
+
     useEffect(() => {
         const getAndDisplayTodos = async () => {
             const todos = await getTodos()
             updateTodosList(todos.data)
+            let completed = []
+            for (let item of todos.data) {
+                if(item.completed === true) {
+                    completed.push(item)
+                }
+            }
         }
         getAndDisplayTodos()
     }, [updateTodosList])
 
     return (
         <>
-          <AddTodos onSubmit={onSubmit} onChange={onInputChange} value={inputValue}/>
-          <TodosList todosList={todosList} editTodos={editTodos} deleteTodos={deleteTodos} />
+          <Nav showCompleted={showCompleted} showALl={showALl} setSearchInputValue={setSearchInputValue} />
+          <AddTodos onSubmit={onSubmit} onChange={onInputChange} value={inputValue} />
+          <TodosList todosList={todosList} editTodos={editTodos} deleteTodos={deleteTodos} completed={completed} todosCompletedList={todosCompletedList} searchText={searchInputValue} />
         </>
     )
 }

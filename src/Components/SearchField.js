@@ -8,7 +8,7 @@ const AddTodos = ({onSubmit, onChange, value}) => {
         <Box as='form' onSubmit={onSubmit}>
             <Label>Add todos</Label>
             <Input value={value} placeholder={'Type what to do'} onChange={onChange}></Input>
-            <Button sx={{backgroundColor: '#4682b4'}} type='submit'>Submit</Button>
+            <Button sx={{backgroundColor: '#4682b4'}}type='submit'>Submit</Button>
         </Box>
     )
 }
