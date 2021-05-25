@@ -23,9 +23,13 @@ const MainView = () => {
             title: inputValue,
             completed: false
         }
-        const todos = await postTodo(body)
-        updateTodosList(todos.data)
-        updateInputValue('')
+        if (inputValue === '') {
+            alert('This field can not be empty')
+        } else {
+            const todos = await postTodo(body)
+            updateTodosList(todos.data)
+            updateInputValue('')
+        }
     }
 
     const editTodos = async (body, id) => {
