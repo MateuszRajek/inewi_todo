@@ -28,3 +28,8 @@ export const todoListStatsState = selector({
       };
     },
   });
+
+  export const userIdState = atom({
+    key: 'userIdState',
+    default: ''
+  })

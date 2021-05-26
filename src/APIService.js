@@ -1,8 +1,23 @@
 const apiToken = '76b08f7af8102aebe5661796145d8f8118e15480395a03249e07532fb87406e5'
-const userId = 1614
+const userId = 1862
+
+export const createUser = async (body) => {
+    const data  = await fetch('https://gorest.co.in/public-api/users', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${apiToken}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            ...body
+        })
+    }).then(resp => resp.json()).then(data => data)
+    return data
+}
     
 export const getTodos = async () => {
     const response = await fetch(`https://gorest.co.in/public-api/users/${userId}/todos`, {
+        method: 'GET'
     })
     return await response.json()
 }

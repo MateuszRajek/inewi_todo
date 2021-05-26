@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { postTodo, getTodos, editTodos as edit, deleteTodos as remove } from '../APIService';
 import AddTodos from './AddTodos';
 import TodosList from './TodosList';
-import { todosListState } from './atoms'
-import { useRecoilState } from 'recoil';
+import { todosListState, userIdState } from './atoms'
+import { useRecoilState, useRecoilValue } from 'recoil';
 import Nav from './Nav';
 import { Container } from '@theme-ui/components';
 
@@ -12,12 +12,14 @@ const MainView = () => {
     const [inputValue, updateInputValue] = useState('')
     const [searchInputValue, setSearchInputValue] = useState('')
     const [completed, setCompleted] = useState(false)
-    const todosCompletedList = todosList.filter((item) => item.completed);
+    const todosCompletedList = todosList.filter((item) => item.completed)
+    const userId = useRecoilValue(userIdState)
 
     const onInputChange = event => {
         updateInputValue(event.target.value)
     }
 
+    console.log(userId)
     const addTodos = async () => {
         const body = {
             title: inputValue,
@@ -26,7 +28,7 @@ const MainView = () => {
         if (inputValue === '') {
             alert('This field can not be empty')
         } else {
-            const todos = await postTodo(body)
+            const todos = await postTodo(body, userId)
             updateTodosList(todos.data)
             updateInputValue('')
         }

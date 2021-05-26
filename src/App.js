@@ -3,6 +3,7 @@ import { ThemeProvider } from 'theme-ui'
 import MainView from './Components/MainView';
 import StatsView from './Components/StatsView';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import UserCreator from './Components/UserCreator';
 import theme from './theme'
 
 function App() {
@@ -12,9 +13,12 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <MainView />
-           </Route>
-           <Route exact path='/stats'>
-             <StatsView />
+          </Route>
+          <Route path='/user'>
+            <UserCreator />
+          </Route>
+          <Route path='/stats'>
+            <StatsView />
           </Route>
         </Switch>
       </Router> 
