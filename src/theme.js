@@ -162,6 +162,11 @@ const theme = {
         textTransform: 'upperCase',
         boxShadow: '0 0 8px rgb(0 0 0 / 13%)',
         border: 'none'
+      },
+      select: {
+        boxShadow: '0 0 8px rgb(0 0 0 / 13%)',
+        border: 'none',
+        // marginBottom: '16px'
       }
     },
     

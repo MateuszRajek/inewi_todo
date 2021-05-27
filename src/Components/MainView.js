@@ -12,7 +12,8 @@ const MainView = () => {
     const [inputValue, updateInputValue] = useState('')
     const [searchInputValue, setSearchInputValue] = useState('')
     const [completed, setCompleted] = useState(false)
-    const todosCompletedList = todosList.filter((item) => item.completed);
+    const todosCompletedList = todosList.filter((item) => item.completed)
+    const userId = localStorage.getItem('userId:')
 
     const onInputChange = event => {
         updateInputValue(event.target.value)
@@ -26,19 +27,19 @@ const MainView = () => {
         if (inputValue === '') {
             alert('This field can not be empty')
         } else {
-            const todos = await postTodo(body)
+            const todos = await postTodo(body, userId)
             updateTodosList(todos.data)
             updateInputValue('')
         }
     }
 
     const editTodos = async (body, id) => {
-        const todos = await edit(body, id)
+        const todos = await edit(body, id, userId)
         updateTodosList(todos.data)
     }
 
     const deleteTodos = async id => {
-        const todos = await remove(id)
+        const todos = await remove(id, userId)
         updateTodosList(todos.data)
     }
 
@@ -57,17 +58,11 @@ const MainView = () => {
 
     useEffect(() => {
         const getAndDisplayTodos = async () => {
-            const todos = await getTodos()
+            const todos = await getTodos(userId)
             updateTodosList(todos.data)
-            let completed = []
-            for (let item of todos.data) {
-                if(item.completed === true) {
-                    completed.push(item)
-                }
-            }
         }
         getAndDisplayTodos()
-    }, [updateTodosList])
+    }, [updateTodosList, userId])
 
     return (
         <>
@@ -77,7 +72,6 @@ const MainView = () => {
             <TodosList todosList={todosList} editTodos={editTodos} deleteTodos={deleteTodos} 
             completed={completed} todosCompletedList={todosCompletedList} searchText={searchInputValue} />
         </Container>
-         
         </>
     )
 }
