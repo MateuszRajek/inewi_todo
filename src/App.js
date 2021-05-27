@@ -7,14 +7,15 @@ import UserCreator from './Components/UserCreator';
 import theme from './theme'
 
 function App() {
+
   return (
     <ThemeProvider theme={theme}>
       <Router>
         <Switch>
-          <Route exact path='/'>
+          <Route path='/main'>
             <MainView />
           </Route>
-          <Route path='/user'>
+          <Route exact path='/'>
             <UserCreator />
           </Route>
           <Route path='/stats'>

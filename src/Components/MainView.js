@@ -14,12 +14,13 @@ const MainView = () => {
     const [completed, setCompleted] = useState(false)
     const todosCompletedList = todosList.filter((item) => item.completed)
     const userId = useRecoilValue(userIdState)
+    // const [userId, setUserId] = useState()
 
     const onInputChange = event => {
         updateInputValue(event.target.value)
     }
 
-    console.log(userId)
+    // console.log(userId)
     const addTodos = async () => {
         const body = {
             title: inputValue,
@@ -35,12 +36,12 @@ const MainView = () => {
     }
 
     const editTodos = async (body, id) => {
-        const todos = await edit(body, id)
+        const todos = await edit(body, id, userId)
         updateTodosList(todos.data)
     }
 
     const deleteTodos = async id => {
-        const todos = await remove(id)
+        const todos = await remove(id, userId)
         updateTodosList(todos.data)
     }
 
@@ -59,14 +60,15 @@ const MainView = () => {
 
     useEffect(() => {
         const getAndDisplayTodos = async () => {
-            const todos = await getTodos()
+            const todos = await getTodos(userId)
+            // console.log(todos)
             updateTodosList(todos.data)
-            let completed = []
-            for (let item of todos.data) {
-                if(item.completed === true) {
-                    completed.push(item)
-                }
-            }
+            // let completed = []
+            // for (let item of todos.data) {
+            //     if(item.completed === true) {
+            //         completed.push(item)
+            //     }
+            // }
         }
         getAndDisplayTodos()
     }, [updateTodosList])
@@ -79,7 +81,6 @@ const MainView = () => {
             <TodosList todosList={todosList} editTodos={editTodos} deleteTodos={deleteTodos} 
             completed={completed} todosCompletedList={todosCompletedList} searchText={searchInputValue} />
         </Container>
-         
         </>
     )
 }

@@ -10,6 +10,7 @@ const UserCreator = () => {
     const [name, setName] = useState('')
     const [gender, setGender] = useState('')
     const [status, setStatus] = useState('')
+    const [userId, setUserId] = useRecoilState(userIdState)
     const history = useHistory()
     
     const user = {
@@ -19,14 +20,13 @@ const UserCreator = () => {
         status: status
     }
 
-    const [userId, setUserId] = useRecoilState(userIdState)
-
     const handleSubmit = (event) => {
         event.preventDefault()
         createUser(user).then(data => {
             setUserId(data.data.id)
+            history.push('/main')
         })
-        history.push('/')
+        
     }
 
     return (

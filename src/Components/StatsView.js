@@ -9,7 +9,7 @@ const StatsView = () => {
 
     return (
         <Box sx={{maxWidth: '90%', margin: '0 auto'}}>
-           <Link to='/'>
+           <Link to='/main'>
                 <Button sx={{backgroundColor: '#a8a8a8', ':hover': 
                     {backgroundColor: 'white', color: '#a8a8a8', boxShadow: '0 0 3px #a8a8a8'}}}>Go Back
                 </Button>

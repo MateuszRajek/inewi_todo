@@ -1,7 +1,7 @@
 const apiToken = '76b08f7af8102aebe5661796145d8f8118e15480395a03249e07532fb87406e5'
-const userId = 1862
 
-export const createUser = async (body) => {
+
+export const createUser = async () => {
     const data  = await fetch('https://gorest.co.in/public-api/users', {
         method: 'POST',
         headers: {
@@ -9,13 +9,20 @@ export const createUser = async (body) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            ...body
+                email: 'mata3dsssz_rajek@wp.pl',
+                name: 'Mateusz Rajek',
+                gender: 'Male',
+                status: 'Active'
         })
-    }).then(resp => resp.json()).then(data => data)
+    }).then(resp => resp.json()).then(data => data).then(result => result.data.id)
+    console.log(data)
     return data
 }
-    
+
+const userId = createUser()
+console.log(createUser())
 export const getTodos = async () => {
+    // console.log('get', userId)
     const response = await fetch(`https://gorest.co.in/public-api/users/${userId}/todos`, {
         method: 'GET'
     })
@@ -23,6 +30,7 @@ export const getTodos = async () => {
 }
 
 export const postTodo = async (body) => {
+    // console.log('post', userId)
     await fetch(`https://gorest.co.in/public-api/users/${userId}/todos`, {
         method: 'POST',
         headers: {
@@ -33,7 +41,7 @@ export const postTodo = async (body) => {
             ...body
         })
     })
-    return getTodos()
+    return getTodos(userId)
 }
 
 export const editTodos = async (body, id) => {
@@ -47,7 +55,7 @@ export const editTodos = async (body, id) => {
             ...body
         })
     })
-    return getTodos()
+    return getTodos(userId)
 }
 
 export const deleteTodos = async (id) => {
@@ -58,7 +66,7 @@ export const deleteTodos = async (id) => {
             'Content-Type': 'application/json'
         }
     })
-    return getTodos()
+    return getTodos(userId)
 } 
 
     
