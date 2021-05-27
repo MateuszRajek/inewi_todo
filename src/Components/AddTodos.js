@@ -3,7 +3,6 @@ import { Label,Input, Box, Button } from 'theme-ui'
 
 const AddTodos = ({onSubmit, onChange, value}) => {
 
-
     return (
         <Box sx={{margin: '30px 5px'}} as='form' onSubmit={onSubmit}>
             <Label sx={{fontSize: '24px'}} >Add todos</Label>

@@ -5,7 +5,6 @@ import Todos from "./Todos"
 
 const TodosList = ({ todosList, editTodos, deleteTodos, completed, todosCompletedList, searchText }) => {
     const todoList = completed ? todosCompletedList : todosList
-
     const searchedList = todoList.filter(item => item.title.includes(searchText))
 
     return(
@@ -26,7 +25,6 @@ const TodosList = ({ todosList, editTodos, deleteTodos, completed, todosComplete
                 })}
             </Flex>
         </Container>
-        
     )
 }
 

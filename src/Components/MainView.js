@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { postTodo, getTodos, editTodos as edit, deleteTodos as remove } from '../APIService';
 import AddTodos from './AddTodos';
 import TodosList from './TodosList';
-import { todosListState, userIdState } from './atoms'
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { todosListState } from './atoms'
+import { useRecoilState } from 'recoil';
 import Nav from './Nav';
 import { Container } from '@theme-ui/components';
 
@@ -13,14 +13,12 @@ const MainView = () => {
     const [searchInputValue, setSearchInputValue] = useState('')
     const [completed, setCompleted] = useState(false)
     const todosCompletedList = todosList.filter((item) => item.completed)
-    const userId = useRecoilValue(userIdState)
-    // const [userId, setUserId] = useState()
+    const userId = localStorage.getItem('userId:')
 
     const onInputChange = event => {
         updateInputValue(event.target.value)
     }
 
-    // console.log(userId)
     const addTodos = async () => {
         const body = {
             title: inputValue,
@@ -61,17 +59,10 @@ const MainView = () => {
     useEffect(() => {
         const getAndDisplayTodos = async () => {
             const todos = await getTodos(userId)
-            // console.log(todos)
             updateTodosList(todos.data)
-            // let completed = []
-            // for (let item of todos.data) {
-            //     if(item.completed === true) {
-            //         completed.push(item)
-            //     }
-            // }
         }
         getAndDisplayTodos()
-    }, [updateTodosList])
+    }, [updateTodosList, userId])
 
     return (
         <>

@@ -1,57 +1,42 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { createUser } from '../APIService'
-import {Label, Input, Select, Box, Button, Container } from 'theme-ui'
-import { useRecoilState } from 'recoil';
-import { userIdState } from '../../src/Components/atoms'
+import {Box, Button, Container, Image, Paragraph } from 'theme-ui';
+import smile from '../assets/smile.png';
 import { useHistory } from 'react-router-dom';
 
 const UserCreator = () => {
-    const [email, setEmail] = useState('')
-    const [name, setName] = useState('')
-    const [gender, setGender] = useState('')
-    const [status, setStatus] = useState('')
-    const [userId, setUserId] = useRecoilState(userIdState)
     const history = useHistory()
     
     const user = {
-        email: email,
-        name: name,
-        gender: gender,
-        status: status
+        email: `${Math.floor(Math.random()*9000)}@mail.com`,
+        name: 'User',
+        gender: 'Male',
+        status: 'Active'
     }
 
-    const handleSubmit = (event) => {
+    const adduserIdToLocalStorage = id => {
+        localStorage.setItem('userId:', JSON.stringify(id))
+    }
+
+    const addUser = async (event) => {
         event.preventDefault()
-        createUser(user).then(data => {
-            setUserId(data.data.id)
-            history.push('/main')
-        })
-        
+        const id = await createUser(user)
+        adduserIdToLocalStorage(id)
+        history.push('/main')
     }
 
     return (
         <Container sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100vw', height: '100vh', margin: '0'}}>
-            <Box sx={{width: '320px', maxWidth: '85%'}} as='form' onSubmit={handleSubmit}>
-                <Label htmlFor='email'>Email</Label>
-                <Input sx={{textTransform: 'lowercase'}} name='email' id='email' mb={3} onChange={event => setEmail(event.target.value)} />
-                <Label htmlFor='name'>Name</Label>
-                <Input sx={{textTransform: 'none'}} name='name' id='name' mb={3} onChange={event => setName(event.target.value)}/>
-                <Label sx={{marginTop: '16px'}} htmlFor='gender'>Gender</Label>
-                <Select defaultValue={'-- select an option --'} id='gender' onChange={event => setGender(event.target.value)}>
-                    <option defaultValue disabled>-- select an option --</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                </Select>
-                <Label sx={{marginTop: '16px'}} htmlFor='status'>Status</Label>
-                <Select defaultValue={'-- select an option --'} id='status' onChange={event => setStatus(event.target.value)}>
-                    <option disabled>-- select an option --</option>
-                    <option>Active</option>
-                    <option>Inactive</option>
-                </Select>
-                    <Button>Submit</Button>
+            <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '320px', maxWidth: '85%'}} 
+            onClick={addUser}>
+                <Paragraph sx={{textAlign: 'center'}}>
+                    To run this App you must create the User account. But do not worry. Just click the button and let the magic happen:
+                </Paragraph>
+                <Image src={smile}/>
+                <Button sx={{backgroundColor: '#4682b4', ':hover': {backgroundColor: 'white', color: '#4682b4', boxShadow: '0 0 3px #4682b4'}}}
+                >Run the App</Button>
             </Box>
         </Container>
-       
     )
 }
 
