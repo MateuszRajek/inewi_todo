@@ -20,21 +20,30 @@ export const getTodos = async (userId) => {
     const response = await fetch(`https://gorest.co.in/public-api/users/${userId}/todos`, {
         method: 'GET'
     })
+
+    console.log('get', response)
     return await response.json()
 }
 
 export const postTodo = async (body, userId) => {
-    await fetch(`https://gorest.co.in/public-api/users/${userId}/todos`, {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${apiToken}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            ...body
+    try {
+        const response = await fetch(`https://gorest.co.in/public-api/users/${userId}/todos`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ...body
+            })
         })
-    })
-    return getTodos(userId)
+        console.log('post', response)
+        
+    } catch(error) {
+        alert(error)
+    }
+    
+    // return getTodos(userId)
 }
 
 export const editTodos = async (body, id, userId) => {

@@ -28,8 +28,8 @@ const MainView = () => {
             alert('This field can not be empty')
         } else {
             const todos = await postTodo(body, userId)
-            updateTodosList(todos.data)
-            updateInputValue('')
+            // updateTodosList(todos.data)
+            // updateInputValue('')
         }
     }
 
