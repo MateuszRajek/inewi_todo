@@ -12,47 +12,64 @@ export const createUser = async (body) => {
         })
     })
 
-    const res = await data.json()
-    return res.data.id
+    const response = await data.json()
+    return response.data.id
 }
     
 export const getTodos = async (userId) => {
-    const response = await fetch(`https://gorest.co.in/public-api/users/${userId}/todos`, {
-        method: 'GET'
-    })
-    return await response.json()
+    try {
+        const response = await fetch(`https://gorest.co.in/public-api/users/${userId}/todos`, {
+            method: 'GET'
+        })
+    
+        return await response.json()
+        
+    } catch(error) {
+        alert(error)
+    }
 }
 
 export const postTodo = async (body, userId) => {
-    await fetch(`https://gorest.co.in/public-api/users/${userId}/todos`, {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${apiToken}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            ...body
+    try {
+        await fetch(`https://gorest.co.in/public-api/users/${userId}/todos`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ...body
+            })
         })
-    })
-    return getTodos(userId)
+
+        return getTodos(userId)
+        
+    } catch(error) {
+        alert(error)
+    }  
 }
 
 export const editTodos = async (body, id, userId) => {
-    await fetch(`https://gorest.co.in/public-api/todos/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Authorization': `Bearer ${apiToken}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            ...body
+    try {
+        await fetch(`https://gorest.co.in/public-api/todos/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${apiToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ...body
+            })
         })
-    })
-    return getTodos(userId)
+        return getTodos(userId)
+    } catch(error) {
+        alert(error)
+    }
 }
 
 export const deleteTodos = async (id, userId) => {
-    await fetch(`https://gorest.co.in/public-api/todos/${id}`, {
+    try {
+        await fetch(`https://gorest.co.in/public-api/todos/${id}`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${apiToken}`,
@@ -60,6 +77,9 @@ export const deleteTodos = async (id, userId) => {
         }
     })
     return getTodos(userId)
+    } catch(error) {
+        console.log(error)
+    } 
 } 
 
     
